@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Simple redirect page">
+  <title>USA0 Redirect</title>
+  <style>
+    /* RESET & GLOBAL STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: white;          /* pure white background as required */
+      font-family: system-ui, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      line-height: 1.2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* no extra content, no distractions */
+    }
+
+    /* main container – centers button perfectly */
+    .center-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 1.5rem;
+    }
+
+    /* MODERN BUTTON STYLES */
+    .redirect-btn {
+      /* visual & sizing */
+      background-color: #0a0a0a;    /* deep black/dark tone – crisp and modern */
+      color: white;                  /* high contrast for readability */
+      border: none;
+      border-radius: 60px;           /* extra rounded, modern pill shape */
+      padding: 1rem 2.6rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      
+      /* smooth transitions for hover animations */
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      
+      /* subtle depth for modern look */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
+      
+      /* accessibility & focus ring */
+      outline: none;
+      
+      /* consistent width for responsiveness */
+      min-width: 200px;
+      text-align: center;
+      
+      /* no extra decoration */
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* HOVER ANIMATION – smooth lift + slight scaling + deeper shadow */
+    .redirect-btn:hover {
+      background-color: #000000;      /* solid black on hover */
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 32px -8px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* ACTIVE / CLICK state gives micro feedback */
+    .redirect-btn:active {
+      transform: translateY(1px) scale(0.98);
+      transition: all 0.05s linear;
+      background-color: #1f1f1f;
+    }
+    
+    /* VISIBLE FOCUS for keyboard navigation – ensures accessibility */
+    .redirect-btn:focus-visible {
+      outline: 3px solid #000000;
+      outline-offset: 4px;
+      border-radius: 60px;
+    }
+
+    /* RESPONSIVE DESIGN: tablet & mobile fine-tuning 
+       Button remains large enough for easy tapping, but scales gracefully */
+    @media (max-width: 768px) {
+      .redirect-btn {
+        font-size: 1.5rem;
+        padding: 0.85rem 2.2rem;
+        min-width: 180px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .redirect-btn {
+        font-size: 1.35rem;
+        padding: 0.75rem 1.8rem;
+        border-radius: 50px;
+        min-width: 160px;
+      }
+    }
+    
+    /* ensure extra tall screens still perfect vertical center */
+    @media (min-height: 800px) {
+      body {
+        align-items: center;
+      }
+    }
+    
+    /* lightweight & no extraneous elements – completely matches PRD */
+  </style>
+</head>
+<body>
+  <div class="center-stage">
+    <!-- Only single element: the redirect button -->
+    <button class="redirect-btn" id="usaRedirectBtn">USA0</button>
+  </div>
+
+  <!-- Simple JavaScript for instant redirect (same tab, external site) -->
+  <script>
+    (function() {
+      // Strict, lightweight redirect logic
+      // Target domain exactly as spec: 0p00.website (using secure protocol for reliability)
+      const DESTINATION_URL = 'https://0p00.website';
+      
+      // Get the button element by ID (clean, robust)
+      const redirectButton = document.getElementById('usaRedirectBtn');
+      
+      if (redirectButton) {
+        // Attach click handler to perform immediate redirect in current tab
+        redirectButton.addEventListener('click', function(event) {
+          // No need to prevent default (button has no default action)
+          // Instantly redirect user to external website
+          window.location.href = DESTINATION_URL;
+        });
+      } else {
+        // extreme fallback: just in case, but selector is guaranteed.
+        // console silent – no errors, but we ensure redirect via optional backup.
+        // However the DOM guarantees existence, so it's purely defensive.
+        const fallbackBtn = document.querySelector('.redirect-btn');
+        if (fallbackBtn) {
+          fallbackBtn.addEventListener('click', () => {
+            window.location.href = DESTINATION_URL;
+          });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
